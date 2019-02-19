@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-bind单向数据(流)</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	
+	<script type="text/javascript" >
+		new Vue({
+			// el:发生行为的目的地
+			el:'#app',
+			// template: 装载的模板
+			template:`
+				<div>
+					<input type="text" v-bind:value="myValue" />
+
+					<button type="text" v-on:click=" myValue='xxx' ">点我发生改变</button>
+				</div>
+			`,
+			data:function(){
+				return {
+					myValue:"abc"
+				}
+			}
+		});
+
+		// 总结：
+		// v-bind:绑定DOM节点的属性值，（将vue中的数据同步到页面中，是单向的）
+		// v-on:绑定事件
+		// 使用方式: v-on:事件名="表达式||函数名"
+		// 简写： @事件名="表达式||函数名"
+		// vue会实时察觉数据，当发生变化时会重新渲染页面
+
+	</script>
+</body>
+</html>

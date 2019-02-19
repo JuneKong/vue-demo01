@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for的使用：遍历数组或对象</title>
+	<style>
+		.a{
+			background-color: red;
+		}
+		.b{
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	
+	<script type="text/javascript" >
+		new Vue({
+			// el:发生行为的目的地
+			el:'#app',
+			// template: 装载的模板
+			template:`
+				<div>
+					<ul>
+						<li v-for=" item in stu1 " :class=" item.myClass ">
+							{{item.name}}
+						</li>
+					</ul>
+
+					<hr/>
+					<ul>
+						<li v-for="(val, key, index) in stu2">
+							index:{{ index }}
+							{{ key }} : {{ val }}
+						</li>
+					</ul>
+				</div>
+			`,
+			data:function(){
+				return {
+					//数组
+					stu1:[{name:'张三', myClass:'a'},{name:'李四', myClass:'b'},{name:'王五', myClass:'a'}],
+					stu2:{'A':'张三','B':'李四','C':'王五',}
+				}
+			}
+		});
+
+		// 总结：
+		// v-for:遍历数组或对象,获得多个属性时要用()
+		// 1.遍历数组时,获得多个属性：(item, index) in stu1 获得item的值和索引值
+		// 此时获得的属性可在之后使用，如class中
+		// 2.遍历对象时，获得多个属性：(val, key, index) in stu2 获得对象的值，键和索引
+		// **class属性也是可以动态改变的，如第一个ul中的class
+	</script>
+</body>
+</html>

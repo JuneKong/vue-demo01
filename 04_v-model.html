@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model双向绑定数据(流)</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	
+	<script type="text/javascript" >
+		new Vue({
+			// el:发生行为的目的地
+			el:'#app',
+			// template: 装载的模板
+			template:`
+				<div>
+					<input type="text" v-model="myValue" />
+					<br/>
+					<span>输入xxx显示button</span>
+					<button type="text" v-show=" myValue==='xxx' ">我是xxx</button>
+				</div>
+			`,
+			data:function(){
+				return {
+					myValue:"abc"
+				}
+			}
+		});
+
+		// 总结：
+		// v-bind可以给任何属性赋值,是从vue到页面的**单向数据流
+		// v-model只能给具备value属性的元素进行**双向数据绑定(必须使用是有value属性的元素)
+		// vue会实时监控属性值，一旦发生改变，重新渲染页面
+	</script>
+</body>
+</html>
